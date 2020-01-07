@@ -3,10 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp1"
+        xmlns:local="clr-namespace:WpfApp1.Views"
+        xmlns:viewmodel="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="EasyParser" Height="450" Width="800">
-
+    <Window.DataContext>
+        <viewmodel:MainViewModel/>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -21,21 +24,10 @@
             </ToolBar>
         </ToolBarPanel>
         <TabControl Margin="0,2,0,0" Grid.Row="1" >
-            <TabItem Header="DataGrid">
-                <DataGrid ItemsSource="{Binding Data, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Наименование" Binding="{Binding fullName}"/>
-                        <DataGridTextColumn Header="ОГРН" Binding="{Binding ogrn}"/>
-                        <DataGridTextColumn Header="ИНН" Binding="{Binding inn}"/>
-                        <DataGridTextColumn Header="КПП" Binding="{Binding kpp}"/>
-                        <DataGridTextColumn Header="Адрес местонахождения" Binding="{Binding orgAddress}"/>
-                        <DataGridTextColumn Header="Фактический адрес" Binding="{Binding factualAddress}"/>
-                        <DataGridTextColumn Header="E-Mail" Binding="{Binding orgEmail}"/>
-                        <DataGridTextColumn Header="Сайт" Binding="{Binding url}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+            <TabItem Header="Data">
+                <local:ChartUserControl Margin="22,0,22,0"/>
             </TabItem>
-            <TabItem Header="Data"/>
+            <TabItem Header="DataGrid"/>
         </TabControl>
         <ToolBarTray Grid.Row="2">
             <ToolBar>
